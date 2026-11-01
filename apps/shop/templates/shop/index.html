@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home-project</title>
-</head>
+{% extends "shop/base.html" %}
 
-<body>
-    <header>
-        <nav>
-            <a href="{% url 'shop:home_page' %}"> Главная </a>
-        </nav>
-    </header>
+
+{% block page_title %}
+    home-project
+{% endblock page_title %}
+
+{% block page_content%}
+
     <h1>Главная страница</h1>
 
     {% if products %}
@@ -30,5 +25,6 @@
     {% else %}
         <p> товаров еще нет, заходите позже!</p>
     {% endif %}
-</body>
-</html>
+
+
+{% endblock page_content %}
