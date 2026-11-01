@@ -6,8 +6,8 @@ from . import views
 #можно так:
 #from .views import home_page_view
 
-
+app_name = 'shop'
 
 urlpatterns = [
-    path("", views.home_page_view),
+    path("", views.home_page_view, name="home_page"),
 ]
