@@ -8,5 +8,18 @@
 
 <body>
     <h1>Главная страница</h1>
+
+    {% if products %}
+        {% for product in products %}
+            <div class="product-container" style="background-color: crimson; color: white; border: 1px solid black; margin-bottom: 10px; padding: 15px;">
+                <h2>Товар: {{ product.product_name }} </h2>
+                <p>Описание: {{ product.text }}</p>
+                <p>Цена (в рублях): {{ product.price }}</p>
+                <small>Дата выпуска товара: {{ product.crated_at }}</small>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p> товаров еще нет, заходите позже!</p>
+    {% endif %}
 </body>
 </html>
