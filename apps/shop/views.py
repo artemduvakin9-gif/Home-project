@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 def home_page_view(request):
-    return HttpResponse("<h1>Главная страница<h1>")
+    return render(request, 'shop/index.html')
