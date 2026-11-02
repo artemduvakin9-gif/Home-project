@@ -7,30 +7,45 @@
 {% block page_content %}
     <h1>Новый товар</h1>
 
-    <form method="POST">
+    <form method="POST" novalidate>
         {% csrf_token %}
 
         <div>
             <label for="titleInput">Название:</label>
             <input
                 id="titleInput"
-                name="title"
+                name="product_name"
                 type="text"
+                value="{{ product_name }}"
                 placeholder="Максимальная длина 200 символов"
                 required
             >
+            {% if errors.product_name %}
+                <div style="color: red; font-size: 12px;">{{ errors.product_name }}</div>
+            {% endif %}
         </div>
 
         <div>
             <label for="textInput">Описание товара:</label>
-            <textarea id="textInput" name="text" rows="3"></textarea>
+            <textarea id="textInput" name="text" rows="3">{{ text }}</textarea>
+
+            {% if errors.text %}
+            <div style="color: red; font-size: 12px;">{{ errors.text }}</div>
+            {% endif %}
         </div>
 
         <div>
             <label for="priceInput">Цена товара:</label>
-            <input type="number" id="priceInput" name="price"
-            required
-        >
+            <input 
+                id="priceInput" 
+                name="price" 
+                type="number" 
+                value = "{{ price }}"
+            > 
+
+            {% if errors.price %}
+            <div style="color: red; font-size: 12px;">{{ errors.price }}</div>
+            {% endif %}
         </div>
 
         <button type="submit">Добавить</button>

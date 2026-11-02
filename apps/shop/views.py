@@ -4,23 +4,49 @@ from shop.models import Product
 
 def home_page_view(request):
     products = Product.objects.all()
-    return render(request, 'shop/index.html', context={'products': products})
+    return render(request, 'shop/pages/index.html', context={'products': products})
 
 def get_product_detail_view(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    return render(request, 'shop/product_detail.html', context={"product": product})
+    return render(request, 'shop/pages/product_detail.html', context={"product": product})
+
+
+
+
+
+
+
 
 def product_add_view(request):
-    if request.method == "GET":
-        return render(request, 'shop/product_add.html')
 
-    elif request.method == "POST":
-        product = Product.objects.create(
-            product_name = request.POST['title'],
-            text = request.POST['text'],
-            price = request.POST['price']
-            )
 
+    if request.method == "POST":
+        product_name = request.POST['product_name'].strip()
+        text = request.POST['text'].strip()
+        price = request.POST['price'].strip()
+
+        errors = {}
+        # if not product_name:
+        #     errors['product_name'] = 'Название товара обязателен к заполнению'
+        if len(product_name) < 6:
+            errors['product_name'] = 'Название товара должно состоять из больше 6 символов'
+        if not text:
+            errors['text'] = 'Описание обязательно к заполнению'
+        if price <= '0':
+            errors['price'] = 'введите корректную цену для товара'
+
+        if errors:
+            context = {
+                'errors': errors,
+                'product_name': product_name,
+                'text': text,
+                'price': price
+            }
+            return render(request, 'shop/pages/product_add.html', context)
+
+        product = Product.objects.create(product_name=product_name, text=text, price=price)
         return redirect('shop:product_detail', product_id=product.id)
+
+    return render(request, 'shop/pages/product_add.html')
 
 
