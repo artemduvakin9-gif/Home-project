@@ -20,7 +20,7 @@
                 </h2>
                 <p>Описание: {{ product.text }}</p>
                 <p>Цена (в рублях): {{ product.price }}</p>
-                <small>Дата выпуска товара: {{ product.created_at }}</small>
+                <small>Дата выпуска товара: {{ product.created_at|date:"d.m.Y H:i" }}</small>
             </div>
         {% endfor %}
     {% else %}

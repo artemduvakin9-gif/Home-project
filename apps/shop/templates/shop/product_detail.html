@@ -14,7 +14,7 @@
     <h3>Товар: {{ product.product_name }}</h3>
     <p>{{ product.text }}</p>
     <p>Цена (В рублях): {{ product.price }}</p>
-    <p>{{ product.created_at }}</p>
+    <p>{{ product.created_at|date:"d.m.Y H:i" }}</p>
 
 
 {% endblock page_content %}
