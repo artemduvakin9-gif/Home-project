@@ -1,0 +1,38 @@
+{% extends "shop/base.html" %}
+
+{% block page_title %}
+    Добавить товар
+{% endblock page_title %}
+
+{% block page_content %}
+    <h1>Новый товар</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div>
+            <label for="titleInput">Название:</label>
+            <input
+                id="titleInput"
+                name="title"
+                type="text"
+                placeholder="Максимальная длина 200 символов"
+                required
+            >
+        </div>
+
+        <div>
+            <label for="textInput">Описание товара:</label>
+            <textarea id="textInput" name="text" rows="3"></textarea>
+        </div>
+
+        <div>
+            <label for="priceInput">Цена товара:</label>
+            <input type="number" id="priceInput" name="price"
+            required
+        >
+        </div>
+
+        <button type="submit">Добавить</button>
+    </form>
+{% endblock page_content %}

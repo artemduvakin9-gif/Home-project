@@ -2,19 +2,19 @@
 
 
 {% block page_title %}
-    {{ product.title }}
+    {{ product.product_name }}
 {% endblock page_title %}
 
 {% block page_content %}
 
-        <a href="javascript:history.back()">&larr;Назад</a>
+    <a href="javascript:history.back()">&larr;Назад</a>
 
-        <h1>Детали поста:</h1>
-        <h2>ID поста: {{ product.id }}</h2>
-        <h3>Товар: {{ product.product_name }}</h3>
-        <p>{{ product.text }}</p>
-        <p>Цена (В рублях): {{ product.price }}</p>
-        <p>{{ product.created_at }}</p>
+    <h1>Детали поста:</h1>
+    <h2>ID поста: {{ product.id }}</h2>
+    <h3>Товар: {{ product.product_name }}</h3>
+    <p>{{ product.text }}</p>
+    <p>Цена (В рублях): {{ product.price }}</p>
+    <p>{{ product.created_at }}</p>
 
 
 {% endblock page_content %}
