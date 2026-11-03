@@ -1,26 +1,26 @@
 from django import forms 
 
-class ProductForm(forms.Form):
-    product_name = forms.CharField(
-        max_length=200,
-        label="Товар:",
-        widget=forms.TextInput(attrs={
-            'placeholder': "Максимальная длина 200 символов"
-        })
-    )
+from shop.models import Product
 
-    text = forms.CharField(
-        label = "Описание товара:",
-        widget = forms.Textarea(attrs={
-            'rows': 3,
-            'cols': 20
-        })
-    )
-
-    price = forms.DecimalField(
-        label = "Цена товара:",
-        widget = forms.NumberInput
-    )
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['product_name', 'text', 'price']
+        widgets = {
+        'product_name': forms.TextInput(attrs={
+        'placeholder': "Максимальная длина 200 символов"
+    }),
+    'text': forms.Textarea(attrs={
+        'rows': 3,
+        'cols': 20
+    }),
+    'price': forms.NumberInput()
+    }
+    labels = {
+        'product_name': 'Название товара:',
+        'text': 'Описание:',
+        'price': 'цена:'
+    }
 
     def clean_product_name(self):
         product_name = self.cleaned_data['product_name'].strip()
