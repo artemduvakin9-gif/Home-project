@@ -16,8 +16,9 @@ def get_product_detail_view(request, product_id):
 
 
 def product_add_view(request):
+    form = ProductForm(request.POST or None)
+
     if request.method == "POST":
-        form = ProductForm(request.POST)
 
         if form.is_valid():
             product = Product.objects.create(
@@ -28,9 +29,6 @@ def product_add_view(request):
 
             return redirect('shop:product_detail', product_id=product.id)
 
-        return render(request, 'shop/pages/product_add.html', {"form": form})
-
-    form = ProductForm()
     return render(request, 'shop/pages/product_add.html', {"form": form})
 
 
