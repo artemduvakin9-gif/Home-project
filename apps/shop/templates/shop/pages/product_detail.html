@@ -16,5 +16,5 @@
     <p>Цена (В рублях): {{ product.price }}</p>
     <p>{{ product.created_at|date:"d.m.Y H:i" }}</p>
 
-
+    <a href="{% url 'shop:product_edit' product_id=product.id%}">Редактировать</a>
 {% endblock page_content %}
