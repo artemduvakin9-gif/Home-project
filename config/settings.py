@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     # Установленные
     'django_bootstrap5',
+    'django_bootstrap_icons',
 
     # собственные
     'shop',
