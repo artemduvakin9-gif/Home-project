@@ -69,4 +69,11 @@ def product_edit_view(request, product_id):
             }
         )
 
+def product_remove_view(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
 
+    if request.method == "POST":
+        product.delete()
+        return redirect("shop:home_page")
+
+    return render(request, 'shop/pages/product_remove_confirm.html', {'product': product})
